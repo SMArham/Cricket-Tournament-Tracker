@@ -1,0 +1,69 @@
+{
+    "best_model": "Random Forest",
+    "features": [
+        "target_score",
+        "current_score",
+        "runs_left",
+        "balls_left",
+        "wickets_left",
+        "current_run_rate",
+        "required_run_rate"
+    ],
+    "comparison": [
+        {
+            "Model": "Logistic Regression",
+            "Accuracy": 0.5214938894111615,
+            "Precision": 0.547853624208304,
+            "Recall": 0.5069184437571219,
+            "F1 Score": 0.5265916969645726
+        },
+        {
+            "Model": "KNN",
+            "Accuracy": 0.5436287496795146,
+            "Precision": 0.5730930274895322,
+            "Recall": 0.5124531987628195,
+            "F1 Score": 0.5410794087315228
+        },
+        {
+            "Model": "Decision Tree",
+            "Accuracy": 0.5097000256388343,
+            "Precision": 0.5374124585329894,
+            "Recall": 0.47468663519453036,
+            "F1 Score": 0.5041057999827124
+        },
+        {
+            "Model": "Random Forest",
+            "Accuracy": 0.5499529954704726,
+            "Precision": 0.6012468252135765,
+            "Recall": 0.4238971186716588,
+            "F1 Score": 0.49723123925911783
+        }
+    ],
+    "classification_report": {
+        "0": {
+            "precision": 0.5198100407055631,
+            "recall": 0.6892767182439726,
+            "f1-score": 0.5926670792079208,
+            "support": 5558.0
+        },
+        "1": {
+            "precision": 0.6012468252135765,
+            "recall": 0.4238971186716588,
+            "f1-score": 0.49723123925911783,
+            "support": 6143.0
+        },
+        "accuracy": 0.5499529954704726,
+        "macro avg": {
+            "precision": 0.5605284329595699,
+            "recall": 0.5565869184578157,
+            "f1-score": 0.5449491592335194,
+            "support": 11701.0
+        },
+        "weighted avg": {
+            "precision": 0.5625641785769183,
+            "recall": 0.5499529954704726,
+            "f1-score": 0.5425634671401064,
+            "support": 11701.0
+        }
+    }
+}

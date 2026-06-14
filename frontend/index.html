@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Tournament Tracker</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>">
+    <meta name="description" content="An advanced Cricket Tournament Tracker with Live Machine Learning Win Probability Predictor for chasing teams.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo" id="navLogo">
+                <span class="logo-icon">🏏</span>
+                <span class="logo-text">Cricket <span>Tournament Tracker</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks" style="display: none;">
+                <li><a href="index.html" class="active" id="navHome">Home</a></li>
+                <li><a href="predictor.html" id="navPredictor">Predictor</a></li>
+                <li><a href="dashboard.html" id="navDashboard">Dashboard</a></li>
+                <li><a href="players.html" id="navPlayers">Players</a></li>
+                <li><a href="seasons.html" id="navSeasons">Seasons</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Embedded Authentication View (Sign Up first, Toggleable to Login) -->
+    <div id="authContent" style="display: none;">
+        <div class="container">
+            <div class="glass-card auth-container">
+                <!-- Tabs -->
+                <div class="auth-toggle">
+                    <button class="toggle-tab active" id="tabSignup">Sign Up</button>
+                    <button class="toggle-tab" id="tabLogin">Login</button>
+                </div>
+
+                <h2 id="authTitle" style="font-family: 'Outfit', sans-serif; margin-bottom: 25px; color: var(--text-white);">Register New Account</h2>
+
+                <!-- Form -->
+                <form id="authForm">
+                    <div class="form-group" style="text-align: left;">
+                        <label for="authEmail">Email Address</label>
+                        <input type="email" id="authEmail" placeholder="email@example.com" required>
+                    </div>
+
+                    <div class="form-group" style="text-align: left; margin-bottom: 25px;">
+                        <label for="authPassword">Password</label>
+                        <input type="password" id="authPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary auth-btn" id="btnSubmit">
+                        Sign Up
+                    </button>
+                </form>
+
+                <div class="auth-switch-text" id="switchPrompt">
+                    Already have an account? <span id="btnSwitchToLogin" style="color: var(--gold); cursor: pointer; font-weight: 600;">Login</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Protected Page Content -->
+    <div id="appContent" style="display: none;">
+        <!-- Hero Section -->
+        <main class="container">
+            <section class="hero">
+                <div class="hero-content">
+                    <span class="hero-subtitle">Advanced Machine Learning System</span>
+                    <h1 class="hero-title">Cricket Tournament Tracker</h1>
+                    <p class="hero-desc">
+                        Leveraging ball-by-ball IPL match data to estimate chasing team win probabilities in real-time. Predict chase outcomes, view player stats, and explore historical tournament dashboards.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="predictor.html" class="btn-primary" id="btnTryPredictor">Try Prediction Simulator</a>
+                        <a href="dashboard.html" class="btn-secondary" id="btnExploreDashboard">View Tournament Dashboard</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <svg class="cricket-stadium-graphic" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="400" rx="20" fill="#0c1d17"/>
+                        <circle cx="200" cy="200" r="160" stroke="#d4af37" stroke-width="2" stroke-dasharray="8 4"/>
+                        <circle cx="200" cy="200" r="120" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+                        <circle cx="200" cy="200" r="80" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+                        <rect x="175" y="100" width="50" height="200" rx="4" fill="#0e3a24" stroke="rgba(255,255,255,0.1)"/>
+                        <rect x="190" y="110" width="20" height="180" fill="#d4af37" opacity="0.15"/>
+                        <line x1="200" y1="100" x2="200" y2="300" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="4 2"/>
+                        <circle cx="200" cy="200" r="30" stroke="#d4af37" stroke-width="1.5" fill="rgba(10, 76, 47, 0.4)"/>
+                        <path d="M 175 140 L 225 140 M 175 260 L 225 260" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                    </svg>
+                </div>
+            </section>
+        </main>
+        <!-- Quick Stats -->
+        <section class="quick-stats">
+            <div class="stat-badge glass-card">
+                <div class="stat-num" id="statSeasons">--</div>
+                <div class="stat-label">Seasons Tracked</div>
+            </div>
+            <div class="stat-badge glass-card">
+                <div class="stat-num" id="statMatches">--</div>
+                <div class="stat-label">Matches Tracked</div>
+            </div>
+            <div class="stat-badge glass-card">
+                <div class="stat-num" id="statPlayers">--</div>
+                <div class="stat-label">Registered Players</div>
+            </div>
+            <div class="stat-badge glass-card">
+                <div class="stat-num" id="statPredictions">--</div>
+                <div class="stat-label">Model Predictions Logs</div>
+            </div>
+        </section>
+        <!-- Features Section -->
+        <section class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Core Capabilities</h2>
+                <p class="section-subtitle">A fully integrated analytics and ML modeling solution</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <div class="glass-card">
+                    <h3 style="font-size: 1.4rem; color: var(--gold); margin-bottom: 12px;">📊 Match Dashboard</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                        Dive deep into historical IPL summaries. View season stats, run scoring patterns, sixes & fours count, and champions history charts.
+                    </p>
+                    <a href="dashboard.html" style="color: var(--text-white); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px;">Go to Dashboard →</a>
+                </div>
+                
+                <div class="glass-card">
+                    <h3 style="font-size: 1.4rem; color: var(--gold); margin-bottom: 12px;">🧠 ML win probability</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                        Simulate real-time second-innings scenarios. Model takes target, current score, wickets, and overs to predict chasing team victory chances.
+                    </p>
+                    <a href="predictor.html" style="color: var(--text-white); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px;">Open Predictor →</a>
+                </div>
+                <div class="glass-card">
+                    <h3 style="font-size: 1.4rem; color: var(--gold); margin-bottom: 12px;">👥 Players Roster</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                        Explore active players. Filter by nationality and playing roles, find debut years, base auction price, and highest historical price.
+                    </p>
+                    <a href="players.html" style="color: var(--text-white); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px;">Browse Players →</a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Cricket Tournament Tracker.</p>
+        </footer>
+    </div>
+    <!-- Toast / Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script.js"></script>
+    <script>
+        // API_BASE is already defined globally in script.js
+        
+        // Quick stats fetching
+        async function loadQuickStats() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard_stats`);
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById('statSeasons').innerText = data.total_seasons || 0;
+                    document.getElementById('statMatches').innerText = data.total_seasons ? data.total_seasons * 60 : 0;
+                    document.getElementById('statPlayers').innerText = data.total_players || 0;
+                }
+                
+                const user = localStorage.getItem("user");
+                const responseLogs = await fetch(`${API_BASE}/api/history?user_email=${encodeURIComponent(user || '')}`);
+                const logs = await responseLogs.json();
+                if (responseLogs.ok) {
+                    document.getElementById('statPredictions').innerText = logs.length || 0;
+                }
+            } catch (error) {
+                console.error("Failed to load quick stats:", error);
+            }
+        }
+
+        // Embedded Auth Controller Logic
+        const tabLogin = document.getElementById('tabLogin');
+        const tabSignup = document.getElementById('tabSignup');
+        const authTitle = document.getElementById('authTitle');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const switchPrompt = document.getElementById('switchPrompt');
+        const authForm = document.getElementById('authForm');
+        
+        let isLoginMode = false; // Default is Sign Up mode as requested by user
+
+        function setMode(loginMode) {
+            isLoginMode = loginMode;
+            if (isLoginMode) {
+                tabLogin.classList.add('active');
+                tabSignup.classList.remove('active');
+                authTitle.innerText = "Access Your Account";
+                btnSubmit.innerText = "Login";
+                switchPrompt.innerHTML = `Don't have an account? <span id="btnSwitchToSignup" style="color: var(--gold); cursor: pointer; font-weight: 600;">Create Account</span>`;
+                document.getElementById('btnSwitchToSignup').addEventListener('click', () => setMode(false));
+            } else {
+                tabSignup.classList.add('active');
+                tabLogin.classList.remove('active');
+                authTitle.innerText = "Register New Account";
+                btnSubmit.innerText = "Sign Up";
+                switchPrompt.innerHTML = `Already have an account? <span id="btnSwitchToLogin" style="color: var(--gold); cursor: pointer; font-weight: 600;">Login</span>`;
+                document.getElementById('btnSwitchToLogin').addEventListener('click', () => setMode(true));
+            }
+        }
+
+        // Setup Event Listeners
+        tabLogin.addEventListener('click', () => setMode(true));
+        tabSignup.addEventListener('click', () => setMode(false));
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+            const submitBtn = document.getElementById('btnSubmit');
+            const originalText = submitBtn.innerText;
+            
+            submitBtn.innerText = isLoginMode ? 'Signing In...' : 'Registering...';
+            submitBtn.disabled = true;
+
+            const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/signup';
+            
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showToast(data.error || 'Authentication action failed.', 'error');
+                    return;
+                }
+
+                if (isLoginMode) {
+                    showToast('Login successful!', 'success');
+                    localStorage.setItem('user', data.user);
+                    
+                    // Transition to main content
+                    document.getElementById('authContent').style.display = 'none';
+                    document.getElementById('navLinks').style.display = 'flex';
+                    document.getElementById('appContent').style.display = 'block';
+                    
+                    // Update navbar login status
+                    if (typeof updateNavbar === 'function') {
+                        updateNavbar();
+                    }
+                    
+                    loadQuickStats();
+                } else {
+                    // Registration successful - Switch to login mode
+                    showToast('Registration successful! Please login.', 'success');
+                    setMode(true);
+                    document.getElementById('authPassword').value = '';
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Could not connect to authentication API.', 'error');
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Initialize view based on user session status
+        window.addEventListener('DOMContentLoaded', () => {
+            const user = localStorage.getItem('user');
+            if (user) {
+                document.getElementById('navLinks').style.display = 'flex';
+                document.getElementById('appContent').style.display = 'block';
+                loadQuickStats();
+            } else {
+                document.getElementById('authContent').style.display = 'block';
+                setMode(false); // First page open is signup/create account
+            }
+        });
+    </script>
+</body>
+</html>

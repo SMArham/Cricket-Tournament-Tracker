@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Tournament Tracker | Seasons</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🏏</span>
+                <span class="logo-text">Cricket <span>Tournament Tracker</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="predictor.html">Predictor</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="players.html">Players</a></li>
+                <li><a href="seasons.html" class="active">Seasons</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">IPL Seasons Recap</h1>
+            <p class="section-subtitle">Browse through year-by-year tournament records, champions, and individual award winners</p>
+        </div>
+        <div class="glass-card">
+            <!-- Table -->
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Teams</th>
+                            <th>Matches</th>
+                            <th>Champion</th>
+                            <th>Runner Up</th>
+                            <th>Total Runs</th>
+                            <th>Total Sixes</th>
+                            <th>Total Fours</th>
+                            <th>Avg 1st Inn</th>
+                            <th>High Score</th>
+                            <th>Low Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="seasonsTableBody">
+                        <tr>
+                            <td colspan="11" style="text-align: center; color: var(--text-muted);">Loading seasons recap...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Cricket Tournament Tracker.</p>
+    </footer>
+    <!-- Toast / Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script.js"></script>
+</body>
+</html>

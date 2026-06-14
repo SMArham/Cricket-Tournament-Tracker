@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Tournament Tracker | Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🏏</span>
+                <span class="logo-text">Cricket <span>Tournament Tracker</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="predictor.html">Predictor</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="players.html">Players</a></li>
+                <li><a href="seasons.html">Seasons</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">Tournament Analytics Dashboard</h1>
+            <p class="section-subtitle">Visual statistics of IPL seasons & live prediction logs</p>
+        </div>
+        <!-- Dashboard Charts Grid -->
+        <div class="dashboard-grid">
+            <!-- Champion Titles Card -->
+            <div class="glass-card chart-card">
+                <h3 style="color: var(--gold); font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">🏆 Title Winners Breakdown</h3>
+                <div class="chart-container">
+                    <canvas id="championsChart"></canvas>
+                </div>
+            </div>
+            <!-- Run Trends Card -->
+            <div class="glass-card chart-card">
+                <h3 style="color: var(--gold); font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">📈 Runs Scored & Sixes Trend</h3>
+                <div class="chart-container">
+                    <canvas id="runTrendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Predictions History Log -->
+        <div class="glass-card" style="margin-top: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="font-size: 1.5rem; color: var(--gold); display: flex; align-items: center; gap: 8px;">📜 Recent Simulator Logs</h2>
+                <span style="color: var(--text-muted); font-size: 0.85rem;" id="logCount">Showing last 10 logs</span>
+            </div>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Chasing Team</th>
+                            <th>Defending Team</th>
+                            <th>Target</th>
+                            <th>Score (Overs)</th>
+                            <th>Wkts</th>
+                            <th>Chasing Prob</th>
+                            <th>Winner Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logsTableBody">
+                        <tr>
+                            <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading logs history...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Cricket Tournament Tracker.</p>
+    </footer>
+    <!-- Toast / Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script.js"></script>
+</body>
+</html>

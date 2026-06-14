@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Tournament Tracker | Predictor</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🏏</span>
+                <span class="logo-text">Cricket <span>Tournament Tracker</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="predictor.html" class="active">Predictor</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="players.html">Players</a></li>
+                <li><a href="seasons.html">Seasons</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">Match Win Probability Simulator</h1>
+            <p class="section-subtitle">Predict the outcome of the chasing team in the 2nd innings</p>
+        </div>
+        <div class="predictor-layout">
+            <!-- Form Card -->
+            <div class="glass-card">
+                <h2 style="font-size: 1.5rem; color: var(--gold); margin-bottom: 25px; display: flex; align-items: center; gap: 8px;">🔧 Match Inputs</h2>
+                
+                <form id="predictionForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="chasing_team">Chasing Team (Batting 2nd)</label>
+                            <select id="chasing_team" required>
+                                <option value="" disabled selected>Select Chasing Team</option>
+                                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                                <option value="Mumbai Indians">Mumbai Indians</option>
+                                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                                <option value="Kings XI Punjab">Kings XI Punjab</option>
+                                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                                <option value="Delhi Daredevils">Delhi Daredevils</option>
+                                <option value="Deccan Chargers">Deccan Chargers</option>
+                                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                                <option value="Delhi Capitals">Delhi Capitals</option>
+                                <option value="Lucknow Super Giants">Lucknow Super Giants</option>
+                                <option value="Gujarat Titans">Gujarat Titans</option>
+                                <option value="Pune Warriors">Pune Warriors</option>
+                                <option value="Kochi Tuskers Kerala">Kochi Tuskers Kerala</option>
+                                <option value="Gujarat Lions">Gujarat Lions</option>
+                                <option value="Rising Pune Supergiant">Rising Pune Supergiant</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="defending_team">Defending Team (Bowling 2nd)</label>
+                            <select id="defending_team" required>
+                                <option value="" disabled selected>Select Defending Team</option>
+                                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                                <option value="Mumbai Indians">Mumbai Indians</option>
+                                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                                <option value="Kings XI Punjab">Kings XI Punjab</option>
+                                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                                <option value="Delhi Daredevils">Delhi Daredevils</option>
+                                <option value="Deccan Chargers">Deccan Chargers</option>
+                                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                                <option value="Delhi Capitals">Delhi Capitals</option>
+                                <option value="Lucknow Super Giants">Lucknow Super Giants</option>
+                                <option value="Gujarat Titans">Gujarat Titans</option>
+                                <option value="Pune Warriors">Pune Warriors</option>
+                                <option value="Kochi Tuskers Kerala">Kochi Tuskers Kerala</option>
+                                <option value="Gujarat Lions">Gujarat Lions</option>
+                                <option value="Rising Pune Supergiant">Rising Pune Supergiant</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="target_score">Target Score</label>
+                            <input type="number" id="target_score" placeholder="e.g. 180" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="current_score">Current Score (Chasing Team)</label>
+                            <input type="number" id="current_score" placeholder="e.g. 110" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-row-three">
+                        <div class="form-group">
+                            <label for="completed_overs">Overs Completed</label>
+                            <input type="number" id="completed_overs" placeholder="0-19" min="0" max="19" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="current_over_balls">Balls Bowled in Over</label>
+                            <input type="number" id="current_over_balls" placeholder="0-5" min="0" max="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wickets_lost">Wickets Lost</label>
+                            <input type="number" id="wickets_lost" placeholder="0-10" min="0" max="10" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 15px;" id="btnPredict">
+                        🧠 Calculate Win Probability
+                    </button>
+                </form>
+            </div>
+            <!-- Output Card -->
+            <div class="glass-card prediction-card" id="outputCard" style="display: none;">
+                <h2 style="font-size: 1.5rem; color: var(--gold); margin-bottom: 15px;">🔮 Prediction Output</h2>
+                
+                <div class="gauge-container">
+                    <svg class="gauge-svg" width="220" height="220" viewBox="0 0 200 200">
+                        <circle class="gauge-track" cx="100" cy="100" r="90"></circle>
+                        <circle class="gauge-fill" id="gaugeCircle" cx="100" cy="100" r="90"></circle>
+                    </svg>
+                    <div class="gauge-center">
+                        <div class="gauge-val" id="chasingProbText">50%</div>
+                        <div class="gauge-label" id="chasingTeamName">Kings XI</div>
+                    </div>
+                </div>
+                <div class="result-verdict" id="resultVerdict">
+                    Kings XI Punjab is favored to win!
+                </div>
+                <div class="prob-split">
+                    <div class="prob-item prob-chasing">
+                        <div class="prob-name" id="chasingLabel">Chasing Team</div>
+                        <div class="prob-pct" id="chasingProbVal">50%</div>
+                    </div>
+                    <div class="prob-item prob-defending">
+                        <div class="prob-name" id="defendingLabel">Defending Team</div>
+                        <div class="prob-pct" id="defendingProbVal">50%</div>
+                    </div>
+                </div>
+                <div class="result-metrics">
+                    <div class="metric-box">
+                        <div class="val" id="metricRunsLeft">--</div>
+                        <div class="lbl">Runs Left</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val" id="metricBallsLeft">--</div>
+                        <div class="lbl">Balls Left</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="val" id="metricWicketsLeft">--</div>
+                        <div class="lbl">Wkts Left</div>
+                    </div>
+                </div>
+                <div class="result-metrics" style="margin-top: 10px;">
+                    <div class="metric-box" style="grid-column: span 1.5;">
+                        <div class="val" id="metricCRR">0.00</div>
+                        <div class="lbl">Current Run Rate</div>
+                    </div>
+                    <div class="metric-box" style="grid-column: span 1.5;">
+                        <div class="val" id="metricRRR">0.00</div>
+                        <div class="lbl">Req. Run Rate</div>
+                    </div>
+                </div>
+                
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 15px; font-style: italic;">
+                    ⚠️ This is an ML-based probability, not a guaranteed match result.
+                </p>
+            </div>
+            <!-- Model Status Warning (If not loaded) -->
+            <div class="glass-card prediction-card" id="waitingCard" style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 300px; color: var(--text-muted);">
+                <span style="font-size: 3rem; margin-bottom: 15px;">📊</span>
+                <h3>Awaiting Simulator Inputs</h3>
+                <p style="font-size: 0.9rem; text-align: center; margin-top: 8px; max-width: 280px;">
+                    Enter the match details on the left and click calculate to run the Machine Learning win probability model.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Cricket Tournament Tracker.</p>
+    </footer>
+    <!-- Toast / Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script.js"></script>
+</body>
+</html>

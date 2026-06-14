@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Tournament Tracker | Players</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏏</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🏏</span>
+                <span class="logo-text">Cricket <span>Tournament Tracker</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="predictor.html">Predictor</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="players.html" class="active">Players</a></li>
+                <li><a href="seasons.html">Seasons</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">IPL Players Directory</h1>
+            <p class="section-subtitle">Search, filter and analyze historical player auction prices and playing styles</p>
+        </div>
+        <div class="glass-card">
+            <!-- Search & Filters -->
+            <div class="search-bar-container">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchPlayer" placeholder="Search player by name (e.g. Dhoni, Kohli, Cummins)...">
+                </div>
+                
+                <select id="filterRole" class="filter-select">
+                    <option value="All">All Roles</option>
+                    <option value="Batsman">Batsmen</option>
+                    <option value="Bowler">Bowlers</option>
+                    <option value="All-Rounder">All-Rounders</option>
+                    <option value="Wicketkeeper">Wicketkeepers</option>
+                </select>
+                <select id="filterNationality" class="filter-select">
+                    <option value="All">All Nationalities</option>
+                    <option value="Indian">Indian Only</option>
+                    <option value="Overseas">Overseas Only</option>
+                </select>
+            </div>
+            <!-- Table -->
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Nationality</th>
+                            <th>Role</th>
+                            <th>Batting Style</th>
+                            <th>Bowling Style</th>
+                            <th>Debut Season</th>
+                            <th>Base Price</th>
+                            <th>Highest Auction Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playersTableBody">
+                        <tr>
+                            <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading players...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="page-info" id="pageInfo">Showing 1-25 of 100 players</div>
+                <div class="page-btns">
+                    <button class="btn-page" id="btnPrevPage" disabled>Previous</button>
+                    <button class="btn-page" id="btnNextPage" disabled>Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Cricket Tournament Tracker.</p>
+    </footer>
+    <!-- Toast / Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script.js"></script>
+</body>
+</html>
