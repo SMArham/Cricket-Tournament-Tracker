@@ -144,13 +144,8 @@ ML_Cricket_Tracker/
     ```bash
     pip install -r backend/requirements.txt
     ```
-4.  **Configure Environment Variables**:
-    Create a `.env` file in the project root folder and specify your Supabase cloud keys:
-    ```env
-    SUPABASE_URL=https://your-project-ref.supabase.co
-    SUPABASE_KEY=your-supabase-secret-service-role-key
-    ```
-5.  **Setup Supabase Database Columns**:
+
+4.  **Setup Supabase Database Columns**:
     Run this SQL command in your Supabase dashboard SQL Editor to enable user-specific logging:
     ```sql
     ALTER TABLE public.predictions ADD COLUMN user_email TEXT;
